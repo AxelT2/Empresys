@@ -32,26 +32,26 @@ and open the template in the editor.
         <?php
         include "check.php";
         
-        if (isset($_POST['btn_buscar'])) {
+        if (isset($_POST["btn_buscar"])) {
             
-    $busqueda = $_POST['buscar'];
+    $busqueda = $_POST["buscar"];
     
-    $sql_search = "SELECT * FROM clientes WHERE CONCAT('idCliente', 'primerNombre', 'apellidoMaterno', `'apellidoPaterno', 'numero', 'correo') LIKE '%" . $busqueda . "%'";
+    $sql_search = "SELECT * FROM clientes WHERE CONCAT(idCliente, primerNombre, apellidoMaterno, apellidoPaterno, numero, correo) LIKE '%" . $busqueda . "%'";
     
-    $search_result = filterTable($sql_search);
+    $search_result = filterTable($row, $conn, $sql_search);
+    
 } else {
     $sql_search = "SELECT * FROM clientes";
-    $search_result = filterTable($sql_search);
+    $search_result = filterTable($row, $conn, $sql_search);
 }
 
-function filterTable($sql_search) {
-    include "check.php";
-    
-    $connect = mysqli_connect("127.0.0.1:3310", "test", "testing1", "db_clientes");
-    
-    $filter_Result = mysqli_query($connect, $sql_search);
+function filterTable($row,$conn, $sql_search) {
+    $filter_Result = mysqli_query($conn, $sql_search);
+    $row = mysqli_fetch_assoc($filter_Result);
     return $filter_Result;
 }
+
+
 ?>
         
     </body>

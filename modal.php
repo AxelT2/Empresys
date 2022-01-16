@@ -17,7 +17,7 @@
                 Correo:<br>
 		<input type="email" name="correo">
 		<br><br>
-		<input type="submit" name="guardar" value="Guardar" >
+		<input type="submit" name="guardar" value="Agregar" >
 	</form>
   </body>
 </html>

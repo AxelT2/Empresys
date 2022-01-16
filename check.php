@@ -18,28 +18,9 @@ echo "<table style='border: solid 1px black;'>";
             die("Connection failed: " . $conn->connect_error);
         }
         $sql = "SELECT idCliente, primerNombre, apellidoMaterno, apellidoPaterno, numero, correo FROM clientes";
-$result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-            
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo'
-        
-        <tr>
-            <td>'.$row["idCliente"].'</td>
-            <td>'.$row["primerNombre"].'</td>
-            <td>'.$row["apellidoMaterno"].'</td>
-            <td>'.$row["apellidoPaterno"].'</td>
-            <td>'.$row["numero"].'</td>
-            <td>'.$row["correo"].'</td>
-        </tr>';
-                
-            }
-        } 
-        
-        else {
-            echo "0 results";
-        }
+
 
         echo "Conectado correctamente";
 ?>

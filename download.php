@@ -2,31 +2,11 @@
 
 include 'check.php';
 
-$sql_down = "SELECT idClientes, primerNombre,apellidoMaterno,apellidoPaterno,numero,correo FROM clientes";
+$sql_down = "SELECT idCliente, primerNombre,apellidoMaterno,apellidoPaterno,numero,correo FROM clientes";
 $res = mysqli_query($conn, $sql_down);
 
+
 $xml = new XMLWriter();
-
-$xml->openURI("php://output");
-$xml->startDocument();
-$xml->setIndent(true);
-
-$xml->startElement('countries');
-
-while ($row = mysqli_fetch_assoc($res)) {
-  $xml->startElement("country");
-
-  $xml->writeAttribute('udid', $row['udid']);
-  $xml->writeRaw($row['country']);
-
-  $xml->endElement();
-}
-
-$xml->endElement();
-
-header('Content-type: text/xml');
-$xml->flush();
-/* $xml = new XMLWriter();
 $xml->openUri("php://output");
 $xml->startDocument();
 $xml->setIndent(true);
@@ -35,7 +15,7 @@ $xml->endElement();
 
 
 
-while($row= mysqli_fetch_assoc($fire)){
+while($row= mysqli_fetch_assoc($res)){
     
     $xml->startElement('clientes');
     
@@ -64,5 +44,5 @@ while($row= mysqli_fetch_assoc($fire)){
 }
 
 header('Content-type: text/xml');
-$xml->flush(); */
+$xml->flush(); 
 ?>

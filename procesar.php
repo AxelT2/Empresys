@@ -10,7 +10,7 @@ if(isset($_POST['guardar']))
 	 $sql_add = "INSERT INTO clientes (primerNombre,apellidoMaterno,apellidoPaterno,numero,correo)
 	 VALUES ('$primer_nombre','$a_materno','$a_paterno','$number','$email')";
 	 if (mysqli_query($conn, $sql_add)) {
-		echo "New record created successfully !";
+		echo "Dato agregado correctamente !";
                 echo'
         
          <a class="button" href="index.php">Volver</a>';

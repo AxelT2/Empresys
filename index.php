@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <form method="POST" action="index.php">
-            <button type="submit" name="mostrar" id="btn_mostrar" class="btn btn-success btn-flat">Mostrar<i class="fa fa-check"></i></button>
+            <button type="submit" name="mostrar" id="btn_mostrar" class="btn btn-success btn-flat">Actualizar<i class="fa fa-check"></i></button>
             <br>
             
         </form>
@@ -32,21 +32,26 @@ and open the template in the editor.
         <?php
         include "check.php";
         
-        if(isset($_POST['btn_buscar']))
-{	 
-            $busqueda = $_POST['buscar'];
-            $sql_search = "SELECT * FROM clientes WHERE CONCAT('idClientes', 'primerNombre', 'apellidoMaterno', `'apellidoPaterno', 'numero', 'correo') LIKE '%".$busqueda."%'";
-            $search_result = filterTable($sql_search);
-        } else {
+        if (isset($_POST['btn_buscar'])) {
+            
+    $busqueda = $_POST['buscar'];
+    
+    $sql_search = "SELECT * FROM clientes WHERE CONCAT('idCliente', 'primerNombre', 'apellidoMaterno', `'apellidoPaterno', 'numero', 'correo') LIKE '%" . $busqueda . "%'";
+    
+    $search_result = filterTable($sql_search);
+} else {
     $sql_search = "SELECT * FROM clientes";
     $search_result = filterTable($sql_search);
 }
+
 function filterTable($sql_search) {
-    $connect = mysqli_connect("127.0.0.1:3310", "test", "testing1", "db_clientes"); 
+    include "check.php";
+    
+    $connect = mysqli_connect("127.0.0.1:3310", "test", "testing1", "db_clientes");
+    
     $filter_Result = mysqli_query($connect, $sql_search);
     return $filter_Result;
 }
-
 ?>
         
     </body>
